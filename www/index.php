@@ -282,11 +282,17 @@
    <head>
       <meta name="viewport" content="width=550, initial-scale=1">
       <title><?php echo CAM_STRING; ?></title>
+      <link rel="stylesheet" href="css/index.css">
+      <link rel="stylesheet" href="css/common.css">
       <link rel="stylesheet" href="css/style_minified.css" />
       <link rel="stylesheet" href="<?php echo getStyle(); ?>" />
       <script src="js/style_minified.js"></script>
       <script src="js/script.js"></script>
-      <script src="js/pipan.js"></script>
+      <script src="js/pipan.js"></script>      
+      <script type="text/javascript" src="js/promise-queue.js"></script>
+      <script type="text/javascript" src="js/bluetooth.js"></script>
+      <script type="text/javascript" src="js/sbrick.js"></script>
+
    </head>
    <body onload="setTimeout('init(<?php echo "$mjpegmode, $video_fps, $divider" ?>);', 100);">
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" <?php getdisplayStyle('navbar', $userLevel); ?>>
@@ -659,10 +665,7 @@
          </div>
       </div>
       <?php if ($debugString != "") echo "$debugString<br>"; ?>
-            <script src="index.js"></script>
-            <script type="text/javascript" src="js/promise-queue.js"></script>
-            <script type="text/javascript" src="js/bluetooth.js"></script>
-            <script type="text/javascript" src="js/sbrick.js"></script>
-            <script type="text/javascript" src="js/gamepad.js"></script>
+      //At the so that the addListener isnt null
+	  <script src="index.js"></script>
    </body>
 </html>

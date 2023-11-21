@@ -1,7 +1,3 @@
-/* Watch CSS animations */
-
-var lastDirection = 'stop';
-
 /* Keyboard events */
 
 document.addEventListener('keydown', handleKeyEvent);
@@ -40,6 +36,26 @@ function handleKeyEvent(event) {
 	evaluateCommands();
 }
 
+/* Mouse events */
+var controls = document.getElementById('controls');
+
+controls.addEventListener('mousedown', handleMouseEvent);
+controls.addEventListener('mouseup', handleMouseEvent);
+controls.addEventListener('touchstart', handleMouseEvent);
+controls.addEventListener('touchend', handleMouseEvent);
+
+function handleMouseEvent(event) {
+    if (event.target.tagName != 'BUTTON') {
+        return;
+    }
+
+    var type = event.type == 'mousedown' || event.type == 'touchstart' ? 'down' : 'up'
+    var command = event.target.dataset[type];
+    executeCommand(command);
+
+    event.preventDefault();
+}
+
 
 /* Connect to device */
 
@@ -59,10 +75,10 @@ var lastCommand = 'stop';
 
 function evaluateCommands() {
 	command = 'stop';
-	if (activeKeys.ArrowUp || activeButtons.ArrowUp) command = 'forward';
-	if (activeKeys.ArrowDown || activeButtons.ArrowDown) command = 'reverse';
-	if (activeKeys.ArrowLeft || activeButtons.ArrowLeft) command = 'left';
-	if (activeKeys.ArrowRight || activeButtons.ArrowRight) command = 'right';
+	if (activeKeys.ArrowUp) command = 'forward';
+	if (activeKeys.ArrowDown ) command = 'reverse';
+	if (activeKeys.ArrowLeft ) command = 'left';
+	if (activeKeys.ArrowRight ) command = 'right';
 	
 	
     if (lastCommand != command) {
