@@ -72,28 +72,6 @@
 	  }
    }
 
-      function sbrick_controls() {
-         $mode = 0;
-         if (file_exists("sbrick_on")){
-            $mode = 1;
-         }
-         if ($mode <> 0) {
-           echo '<script type="text/javascript" src="js/promise-queue.js"></script>';
-           echo '<script type="text/javascript" src="js/bluetooth.js"></script>';
-           echo '<script type="text/javascript" src="js/sbrick.js"></script>';
-           echo '<script type="text/javascript" src="js/gamepad.js"></script>';
-            echo "<div class='container-fluid text-center liveimage'>";
-            echo "<div ><button id='connect'>Connect</button></div>";
-            echo "<div alt='Up' id='button-forward' style='margin-bottom: 2px;width: 0;height: 0;border-left: 20px solid transparent;border-right: 20px solid transparent;border-bottom: 40px solid #428bca;font-size: 0;line-height: 0;vertical-align: middle;margin-left: auto; margin-right: auto;' onclick='servo_up();'></div>";
-            echo "<div>";
-            echo "<div alt='Left' id='button-left' style='margin-right: 22px;display: inline-block;height: 0;border-top: 20px solid transparent;border-bottom: 20px solid transparent;border-right: 40px solid #428bca;font-size: 0;line-height: 0;vertical-align: middle;' onclick='servo_left();'></div>";
-            echo "<div alt='Right' id='button-right' style='margin-left: 22px;display: inline-block;height: 0;border-top: 20px solid transparent;border-bottom: 20px solid transparent;border-left: 40px solid #428bca;font-size: 0;line-height: 0;vertical-align: middle;' onclick='servo_right();'></div>";
-            echo "</div>";
-            echo "<div alt='Down' id='button-reverse' style='margin-top: 2px;width: 0;height: 0;border-left: 20px solid transparent;border-right: 20px solid transparent;border-top: 40px solid #428bca;font-size: 0;line-height: 0;vertical-align: middle;margin-left: auto; margin-right: auto;' onclick='servo_down();'></div>";
-            echo "</div>";
-         }
-      }
-
    function pan_controls() {
       $mode = 0;
       if (file_exists("pipan_on")){
@@ -331,7 +309,15 @@
          </div>
       </div>
       <div id="secondary-buttons" class="container-fluid text-center">
-         <?php sbrick_controls(); ?>
+        <div ><button id='connect'>Connect</button></div>
+         <div id='controlView'>
+                 <div id='controls'>
+                    <button id='button-forward' data-down='forward' data-up='stop'>▲&#xFE0E;</button>
+                    <button id='button-left' data-down='left' data-up='stop'>◀&#xFE0E;</button>
+                    <button id='button-right' data-down='right' data-up='stop'>▶&#xFE0E;</button>
+                    <button id='button-reverse' data-down='reverse' data-up='stop'>▼&#xFE0E;</button>
+                 </div>
+         </div>
          <?php pan_controls(); ?>
          <?php user_buttons(); ?>
          <a href="preview.php" class="btn btn-default" <?php getdisplayStyle('preview', $userLevel); ?>>Download Videos and Images</a>
@@ -673,5 +659,10 @@
          </div>
       </div>
       <?php if ($debugString != "") echo "$debugString<br>"; ?>
+            <script src="index.js"></script>
+            <script type="text/javascript" src="js/promise-queue.js"></script>
+            <script type="text/javascript" src="js/bluetooth.js"></script>
+            <script type="text/javascript" src="js/sbrick.js"></script>
+            <script type="text/javascript" src="js/gamepad.js"></script>
    </body>
 </html>
